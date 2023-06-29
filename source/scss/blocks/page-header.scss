@@ -241,17 +241,17 @@
     display: block;
     color: inherit;
     padding: 0 0.5em 0.5em;
-
+    transition: color ease-in 0.25s;
     &::after {
       content: "";
       position: absolute;
       bottom: 0;
-      width: 100%;
+      width: 0%;
       height: 2px;
       background-color: $c-light;
-      display: none;
+      opacity: 0;
       left: 0;
-
+      transition: all ease-in 0.25s;
       @media (max-width: $tablet) and (orientation: portrait) {
         left: 0;
         right: 0;
@@ -267,7 +267,8 @@
 
     &.active {
       &::after {
-        display: block;
+        opacity: 100%;
+        width: 100%;
       }
     }
 
@@ -275,9 +276,9 @@
     &:focus {
       color: $c-purple;
       outline: none;
-
       &::after {
         opacity: 1;
+        width: 100%;
         background-color: $c-purple;
       }
     }
