@@ -35,7 +35,8 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
-
+  @include hidden;
+  transform: translateX(-10%);
   @media (min-width: $stop-scaling) {
     top: -5px;
     padding: 10px 0;
@@ -68,6 +69,11 @@
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  .loaded & {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
@@ -130,6 +136,8 @@
 .page-header__nav {
   display: flex;
   align-items: center;
+  @include hidden;
+  transform: translateY(-10%);
 
   @media (max-width: $tablet) and (orientation: portrait) {
     position: fixed;
@@ -167,6 +175,10 @@
     .page-header--menu-opened & {
       transform: translateX(0);
     }
+  }
+  .loaded & {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
