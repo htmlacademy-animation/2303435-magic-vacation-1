@@ -39,7 +39,10 @@
     border: 2px solid $c-light;
     z-index: -1;
     transition: width ease-in-out 0.25s, height ease-in-out 0.25s;
+  }
 
+  .loaded &::before{
+    animation: 0.3s springy linear;
   }
 
   svg {
