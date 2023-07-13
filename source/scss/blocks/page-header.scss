@@ -137,7 +137,6 @@
   display: flex;
   align-items: center;
   @include hidden;
-  transform: translateY(-10%);
 
   @media (max-width: $tablet) and (orientation: portrait) {
     position: fixed;
@@ -178,7 +177,6 @@
   }
   .loaded & {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -278,7 +276,7 @@
       }
     }
 
-    &.active {
+    .loaded &.active {
       &::after {
         transform-origin: left;
         transform: scaleX(1);
