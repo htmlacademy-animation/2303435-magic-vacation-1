@@ -361,3 +361,21 @@
 .screen--rules {
   background-color: $c-dark;
 }
+
+.screen__bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: $c-dark;
+  z-index: 2;
+  pointer-events: none;
+  transform-origin: bottom;
+  transform: scaleY(0);
+  &_active{
+    pointer-events: auto;
+    transition: transform 0.3s ease-in-out;
+    transform: scaleY(1);
+  }
+}
