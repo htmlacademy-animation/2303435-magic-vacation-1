@@ -9,6 +9,7 @@ export default class FullPageScroll {
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
 
+    this.prevScreen = 0;
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
     this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
@@ -40,6 +41,7 @@ export default class FullPageScroll {
   }
 
   onUrlHashChanged() {
+    this.prevScreen = this.activeScreen;
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
     this.changePageDisplay();
@@ -52,14 +54,30 @@ export default class FullPageScroll {
   }
 
   changeVisibilityDisplay() {
-    this.screenElements.forEach((screen) => {
-      screen.classList.add(`screen--hidden`);
-      screen.classList.remove(`active`);
-    });
-    this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
-    setTimeout(() => {
-      this.screenElements[this.activeScreen].classList.add(`active`);
-    }, 100);
+    if (this.prevScreen === 1) {
+      document.querySelector(`.screen__bg`).classList.add(`screen__bg_active`);
+      setTimeout(() => {
+        this.screenElements.forEach((screen) => {
+          screen.classList.add(`screen--hidden`);
+          screen.classList.remove(`active`);
+        });
+        this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
+        document.querySelector(`.screen__bg`).classList.remove(`screen__bg_active`);
+      }, 300);
+      setTimeout(() => {
+        this.screenElements[this.activeScreen].classList.add(`active`);
+      }, 400);
+
+    } else {
+      this.screenElements.forEach((screen) => {
+        screen.classList.add(`screen--hidden`);
+        screen.classList.remove(`active`);
+      });
+      this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
+      setTimeout(() => {
+        this.screenElements[this.activeScreen].classList.add(`active`);
+      }, 100);
+    }
   }
 
   changeActiveMenuItem() {
