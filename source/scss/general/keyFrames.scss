@@ -16,3 +16,37 @@
     height: 100%;
   }
 }
+@keyframes show-bullet {
+  to{
+    transform: scale(1);
+  }
+}
+@keyframes show-bullet-counter {
+  to{
+    color: rgba(255, 255, 255, 1);
+  }
+}
+@keyframes show-bullet-text {
+  to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes show-rules-btn {
+  0% {
+    opacity: 1;
+  }
+  25%{
+    border-radius: 3.5rem;
+  }
+  100%{
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1, 1);
+    border-radius: 3.5rem;
+   }
+}
+@keyframes show-rules-text {
+  to{
+    opacity: 1;
+  }
+}
