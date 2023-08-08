@@ -16,3 +16,21 @@
     height: 100%;
   }
 }
+@keyframes show-bullet {
+  to{
+    transform: scale(1);
+  }
+}
+@keyframes show-bullet-text {
+  to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes show-rules-btn {
+  100%{
+    right: 50%;
+    opacity: 1;
+    transform: scaleX(1) translate(50%, -50%);
+   }
+}
