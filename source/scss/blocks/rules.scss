@@ -143,25 +143,17 @@
     padding-left: 5rem;
     font-size: 1.2rem;
   }
-
-  &::before {
-    content: counter(li);
-    counter-increment: li;
+  &::after, &::before{
     position: absolute;
     top: 0;
     left: 0;
     width: 4.5rem;
     height: 4.5rem;
-    font-family: $font-alt;
-    font-weight: 400;
-    font-size: 2.4rem;
-    background-color: $c-purple;
-    border-radius: 50%;
     line-height: 5rem;
     text-align: center;
-    transform: scale(0);
-    color: rgba(255, 255, 255, 0);
-
+    font-size: 2.4rem;
+    font-family: $font-alt;
+    font-weight: 400;
     @media (max-width: $tablet) and (orientation: portrait) {
       top: 1rem;
       width: 2.5rem;
@@ -169,7 +161,6 @@
       line-height: 3rem;
       font-size: 1.4rem;
     }
-
     @media (max-width: $mobile) and (orientation: landscape) {
       top: 0.6rem;
       width: 2.5rem;
@@ -178,11 +169,23 @@
       font-size: 1.4rem;
     }
   }
+  &::after{
+    content: counter(li);
+    counter-increment: li;
+    opacity: 0;
+  }
+  &::before {
+    content: '';
+    background-color: $c-purple;
+    border-radius: 50%;
+    transform: scale(0);
+    color: rgba(255, 255, 255, 0);
+  }
 
   p {
     margin: 0;
     opacity: 0;
-    transform: translateX(25px);
+    transform: translateX(2rem);
     @media (max-width: $tablet) and (orientation: portrait) {
       min-height: calc(1.4rem * 2.2);
     }
@@ -200,31 +203,37 @@
   &:nth-child(4) p {
     animation: show-bullet-text 0.6s 0.9s ease-out forwards;
   }
-
   &:nth-child(1):before{
-    animation: show-bullet 0.5s cubic-bezier(.26,1.73,.64,1) forwards,
-    show-bullet-counter 0.3s linear forwards;
+    animation: show-bullet 0.5s cubic-bezier(.26,1.73,.64,1) forwards;
   }
   &:nth-child(2):before{
-    animation: show-bullet 0.5s 0.3s cubic-bezier(.26,1.73,.64,1) forwards,
-    show-bullet-counter 0.3s 0.3s linear forwards;
+    animation: show-bullet 0.5s 0.3s cubic-bezier(.26,1.73,.64,1) forwards;
   }
   &:nth-child(3):before{
-    animation: show-bullet 0.5s 0.6s cubic-bezier(.26,1.73,.64,1) forwards,
-    show-bullet-counter 0.3s 0.6s linear forwards;
+    animation: show-bullet 0.5s 0.6s cubic-bezier(.26,1.73,.64,1) forwards;
   }
   &:nth-child(4):before{
-    animation: show-bullet 0.5s 0.9s cubic-bezier(.26,1.73,.64,1) forwards,
-    show-bullet-counter 0.3s 0.9s linear forwards;
+    animation: show-bullet 0.5s 0.9s cubic-bezier(.26,1.73,.64,1) forwards;
   }
-
+  &:nth-child(1):after{
+    animation: fadeIn 0.3s linear forwards;
+  }
+  &:nth-child(2):after{
+    animation: fadeIn 0.3s 0.3s linear forwards;
+  }
+  &:nth-child(3):after{
+    animation: fadeIn 0.3s 0.6s linear forwards;
+  }
+  &:nth-child(4):after{
+    animation: fadeIn 0.3s 0.9s linear forwards;
+  }
 }
 
 .rules__link {
   position: absolute;
   bottom: 6rem;
   right: 5.6rem;
-
+  overflow: hidden;
   @media (min-width: $stop-scaling) {
     bottom: 60px;
     right: 56px;
@@ -247,15 +256,17 @@
 
   &:before{
     opacity: 0;
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0.3, 1);
+    left: initial;
+    right: 10%;
+    border-radius: 3.5rem;
+    transform: scaleX(0) translate(50%, -50%);
+    transform-origin: right;
     animation: show-rules-btn 0.3s 1.4s forwards;
   }
-
   p{
     display: inline;
     opacity: 0;
-    animation: show-rules-text 0.3s 1.5s forwards;
+    animation: fadeIn 0.3s 1.5s forwards;
   }
 
 }
